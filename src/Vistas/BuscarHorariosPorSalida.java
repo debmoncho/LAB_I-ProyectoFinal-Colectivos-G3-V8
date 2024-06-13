@@ -1,4 +1,3 @@
-
 package Vistas;
 
 import Entidades.Horario;
@@ -14,21 +13,21 @@ import javax.swing.table.DefaultTableModel;
  * @author tebby
  */
 public class BuscarHorariosPorSalida extends javax.swing.JInternalFrame {
-    private DefaultTableModel tablaDec; 
-    private DefaultComboBoxModel jcombo ;
-     HorarioData horarioD=new HorarioData();
- 
+
+    private DefaultTableModel tablaDec;
+    private DefaultComboBoxModel jcombo;
+    HorarioData horarioD = new HorarioData();
+
     /**
      * Creates new form BuscarHorariosPorSalida
      */
     public BuscarHorariosPorSalida() {
         initComponents();
-        tablaDec=new DefaultTableModel();
-        jcombo=new DefaultComboBoxModel();
-        
-        
-        
-      
+        tablaDec = new DefaultTableModel();
+        jcombo = new DefaultComboBoxModel();
+        armarCabecera();
+        llenarHorarios();
+
     }
 
     private void armarCabecera() {
@@ -36,25 +35,28 @@ public class BuscarHorariosPorSalida extends javax.swing.JInternalFrame {
         filaCabecera.add("ruta");
         filaCabecera.add("Salida");
         filaCabecera.add("Llegada");
-        filaCabecera.add("estado ");
         //filaCabecera.add("estado");
         for (Object it : filaCabecera) {
             tablaDec.addColumn(it);
         }
         jTable.setModel(tablaDec);
     }
-    
-    private void agregarHorarios(){
-        LocalTime horaSalida = LocalTime.parse(jHora.getSelectedItem().toString());
-        List<Horario> lista = horarioD.obtenerHorarioPorHoraSalida(horaSalida);
-        tablaDec.setRowCount(0);
-        for (Horario r : lista) {
-            tablaDec.addRow(new Object[]{r.getHoraSalida(), r.getHoraLlegada(), r.isEstado()});
-            jTable.setModel(tablaDec);
-        }
+
+    public void llenarHorarios() {
+        List<Horario> listaHora = horarioD.obtenerTodosLosHorarios();
+        jcombo = new DefaultComboBoxModel(listaHora.toArray());
+        jHora.setModel(jcombo);
     }
-    
-    
+
+    private void agregarHorarios() {
+        Horario hora = (Horario) jHora.getSelectedItem();
+
+        tablaDec.setRowCount(0);
+        tablaDec.addRow(new Object[]{hora.getRuta(), hora.getHoraSalida(), hora.getHoraLlegada()});
+        jTable.setModel(tablaDec);
+//        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
