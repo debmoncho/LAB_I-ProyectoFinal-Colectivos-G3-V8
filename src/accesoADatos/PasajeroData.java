@@ -116,7 +116,7 @@ public class PasajeroData {
               
                 pasajero.setEstado(true);
             } else {
-                JOptionPane.showMessageDialog(null, "No existe ese pasajero");
+                JOptionPane.showMessageDialog(null, "No existe ese pasajero por id");
             }
             ps.close();
 
@@ -148,7 +148,7 @@ public class PasajeroData {
                 pasajero.setEstado(true);
                 
             } else {
-                JOptionPane.showMessageDialog(null, "No existe ese pasajero");
+                JOptionPane.showMessageDialog(null, "No existe ese pasajero por dni");
             }
             ps.close();
 
@@ -282,6 +282,38 @@ public class PasajeroData {
         
         return pasajeros;
         
+    }
+    
+    public Pasajero buscarPasajeroMio(int id) {
+
+        String sql = "SELECT nombre, apellido, dni, correo, telefono FROM pasajeros WHERE idPasajero= ? AND estado= 1";
+        Pasajero pasajero = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                pasajero = new Pasajero();
+                pasajero.setIdPasajero(id);
+                pasajero.setNombre(rs.getString("nombre"));
+                pasajero.setApellido(rs.getString("apellido"));
+                pasajero.setDni(rs.getString("dni"));
+                pasajero.setCorreo(rs.getString("correo"));
+                pasajero.setTelefono(rs.getString("telefono"));
+    
+              
+                pasajero.setEstado(true);
+            } else {
+//                JOptionPane.showMessageDialog(null, "No existe ese pasajero por id");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar el pasajero ");
+        }
+        
+        return pasajero;
     }
     
     

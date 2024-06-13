@@ -78,7 +78,7 @@ public class Ventas extends javax.swing.JInternalFrame {
 
     public void traerAsientos() {
         Colectivo cole = (Colectivo) jComboColectivo.getSelectedItem();
-        List<Pasaje> pasajes = pasajeD.obtenerPasajesCompradosPorColectivo(cole.getIdColectivo());
+        List<Pasaje> pasajes = pasajeD.obtenerPasajesCompradosPorColectivoEId(cole.getIdColectivo());
         List<Integer> pasajesComprados = new ArrayList<Integer>();
         boolean comprado = false;
         for (Pasaje p : pasajes) {
@@ -429,7 +429,6 @@ public class Ventas extends javax.swing.JInternalFrame {
             jdFecha.setDate(null);
             return;
         }
-        
         Ruta ruta = (Ruta) jComboRuta.getSelectedItem();
         String selected = (String) jComboHora.getSelectedItem();
         LocalTime horaViaje = LocalTime.parse(selected);
@@ -449,6 +448,10 @@ public class Ventas extends javax.swing.JInternalFrame {
         jtPrecio.setText("");
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Se esperaban numeros no otros caracteres");
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "formato de fecha incorrecto");
+        }catch(ArrayIndexOutOfBoundsException exx){
+                JOptionPane.showMessageDialog(null, "Seleccione un pasajero");
         }
         
     }//GEN-LAST:event_jGuardarActionPerformed
