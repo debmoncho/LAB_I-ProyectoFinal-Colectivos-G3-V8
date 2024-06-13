@@ -108,6 +108,18 @@ public class Pasajeros extends javax.swing.JInternalFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("DNI:");
 
+        jtfDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfDocumentoKeyTyped(evt);
+            }
+        });
+
+        jtfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfNombreKeyTyped(evt);
+            }
+        });
+
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Nombre:");
 
@@ -123,12 +135,24 @@ public class Pasajeros extends javax.swing.JInternalFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Apellido:");
 
+        jtfTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfTelefonoKeyTyped(evt);
+            }
+        });
+
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("¿Estado Activo? :");
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Telefono:");
+
+        jtfApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfApellidoKeyTyped(evt);
+            }
+        });
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Correo:");
@@ -361,7 +385,7 @@ public class Pasajeros extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:             
         try {
             String dni = jtfDocumento.getText();
             String apellido = jtfApellido.getText();
@@ -440,6 +464,34 @@ public class Pasajeros extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         llenarTablaPorSeleccion();
     }//GEN-LAST:event_jBusquedaApellidoKeyReleased
+
+    private void jtfDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDocumentoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        
+        if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_jtfDocumentoKeyTyped
+
+    private void jtfTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        
+        if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_jtfTelefonoKeyTyped
+
+    private void jtfApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfApellidoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        
+        if((c<'a' || c>'z') && (c<'A' | c> 'Z')) evt.consume();
+    }//GEN-LAST:event_jtfApellidoKeyTyped
+
+    private void jtfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        
+        if((c<'a' || c>'z') && (c<'A' | c> 'Z')) evt.consume();
+    }//GEN-LAST:event_jtfNombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
