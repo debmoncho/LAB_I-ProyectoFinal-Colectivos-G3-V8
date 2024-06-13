@@ -259,7 +259,7 @@ public class PasajeroData {
         try {
            PreparedStatement ps = con.prepareStatement("SELECT * FROM pasajeros WHERE apellido LIKE ?");
            ps.setString(1, Pclave + "%");
-            
+           
            ResultSet rs = ps.executeQuery();
            
            while(rs.next()){

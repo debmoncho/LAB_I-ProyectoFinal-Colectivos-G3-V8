@@ -92,6 +92,33 @@ public class PasajeData {
         }
         
     }
+    
+    public void borrarPasaje1(int idPasaje){
+        
+        String sql = "DELETE FROM pasajes WHERE idPasaje = ? ";
+        
+        try {
+        
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            ps.setInt(1, idPasaje);
+            
+            int exito = ps.executeUpdate();
+            
+            if(exito > 0){
+                JOptionPane.showMessageDialog(null, "Pasaje borrado exitosamente!");
+            }
+            
+            ps.close();
+        
+        
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, "Error al borrar el pasaje");
+        
+        }
+        
+    }
          
     
     public void actualizarFechaViaje(int idPasajero, int idRuta, LocalDate fechaViaje){

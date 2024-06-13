@@ -212,7 +212,7 @@ public class Pasajeros extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(188, 188, 188)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
                         .addGap(113, 113, 113)
                         .addComponent(jButton1)
                         .addGap(25, 25, 25))
@@ -322,7 +322,7 @@ public class Pasajeros extends javax.swing.JInternalFrame {
                 .addGap(243, 243, 243))
         );
 
-        setBounds(0, 0, 805, 647);
+        setBounds(0, 0, 845, 644);
     }// </editor-fold>//GEN-END:initComponents
 
         private void llenarTabla(ArrayList<Pasajero> pasajeros) {
