@@ -306,16 +306,14 @@ public class Rutas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
-        // TODO add your handling code here:
 
-        ButtonModel selection = buttonGroup1.getSelection();
         if (jrOrigen.isSelected()) {
+            borrarFilasTabla();
             cargarOrigen();
         } else if (jrDestino.isSelected()) {
+            borrarFilasTabla();
             cargarDestino();
         }
-
-        //int a = 2;
     }//GEN-LAST:event_jBuscarActionPerformed
 
     private void jrOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrOrigenActionPerformed
@@ -372,11 +370,21 @@ private void armarCabecera() {
             modelo.addRow(new Object[]{ruta.getOrigen()});
         }
     }
-    
-    private void cargarDestino(){
+
+    private void cargarDestino() {
         List<Ruta> lista = rutadata.listarDestino();
-        for (Ruta ruta : lista) {          
-            modelo.addRow(new Object[]{" ",ruta.getDestino()});
+        for (Ruta ruta : lista) {
+            modelo.addRow(new Object[]{" ", ruta.getDestino()});
         }
     }
+
+    private void borrarFilasTabla() {
+
+        int indice = modelo.getRowCount() - 1;
+        for (int i = indice; i >= 0; i--) {
+
+            modelo.removeRow(i);
+        }
+    }
+
 }

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-06-2024 a las 19:56:04
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 11-06-2024 a las 17:01:40
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `empresadecolectivos-g3`
 --
-CREATE DATABASE IF NOT EXISTS `empresadecolectivos-g3` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `empresadecolectivos-g3`;
 
 -- --------------------------------------------------------
 
@@ -147,19 +145,7 @@ CREATE TABLE `rutas` (
 INSERT INTO `rutas` (`idRuta`, `origen`, `destino`, `duracionEstimada`, `estado`) VALUES
 (1, 'San luis', 'Merlo', '04:25:00', 1),
 (2, 'San luis', 'Villa Mercedes', '04:30:00', 1),
-(3, 'San luis', 'Merlo', '04:25:00', 1),
-(4, 'Quines', ' San Luis', '02:30:00', 1),
-(5, 'San Luis ', 'Villa Mercedez', '01:00:00', 1),
-(6, 'La Florida', 'San Luis', '01:00:00', 1),
-(7, 'Carolina', 'San Luis', '02:00:00', 1),
-(8, 'La Punta ', 'Nogoli', '01:00:00', 1),
-(9, 'Villa De La Quebrada', 'Villa Mercedez', '02:00:00', 1),
-(10, 'Juana Koslay', 'Rio Negro', '01:00:00', 1),
-(11, 'San Luis', 'Trapiche', '01:00:00', 1),
-(12, 'Batabia ', 'San Luis', '02:30:00', 1),
-(13, 'Paso Del Ray', 'La Punta', '01:00:00', 1),
-(14, 'Desaguadero', 'San Luis', '01:00:00', 1),
-(15, 'Balde', ' Villa Mercedez', '01:00:00', 1);
+(3, 'San luis', 'Merlo', '04:25:00', 1);
 
 --
 -- Índices para tablas volcadas
@@ -232,7 +218,7 @@ ALTER TABLE `pasajes`
 -- AUTO_INCREMENT de la tabla `rutas`
 --
 ALTER TABLE `rutas`
-  MODIFY `idRuta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idRuta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
