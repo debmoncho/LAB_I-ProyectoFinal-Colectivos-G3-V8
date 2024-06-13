@@ -21,8 +21,7 @@ public class BuscarHorariosPorRuta extends javax.swing.JInternalFrame {
 
     RutaData rd=new RutaData();
     HorarioData horarioD=new HorarioData();
-    private  Horario horario;
-   private List<Ruta> listaR;
+    
    private DefaultComboBoxModel jcomboRuta ;
    private DefaultTableModel tablaDec;
     

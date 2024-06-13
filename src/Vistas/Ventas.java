@@ -64,7 +64,7 @@ public class Ventas extends javax.swing.JInternalFrame {
 
     public void llenarHorario() {
         Ruta ruta = (Ruta) jComboRuta.getSelectedItem();
-        List<Horario> listaHora = hd.obtenerHorarioPorRuta(ruta.getIdRuta());
+        List<Horario> listaHora = hd.obtenerHorarioPorRutaYEstado(ruta.getIdRuta());
         List<String> infoHora = new ArrayList<>();
 
         for (Horario hora : listaHora) {
@@ -79,25 +79,25 @@ public class Ventas extends javax.swing.JInternalFrame {
     public void traerAsientos() {
         Colectivo cole = (Colectivo) jComboColectivo.getSelectedItem();
         List<Pasaje> pasajes = pasajeD.obtenerPasajesCompradosPorColectivo(cole.getIdColectivo());
-        List<Integer>pasajesComprados=new ArrayList<Integer>();
-        boolean comprado=false;
-        for(Pasaje p:pasajes){
-            
+        List<Integer> pasajesComprados = new ArrayList<Integer>();
+        boolean comprado = false;
+        for (Pasaje p : pasajes) {
+
             pasajesComprados.add(p.getAsiento());
-           
-        }       
+
+        }
         List<Integer> asientos = new ArrayList<Integer>();
         for (int i = 0; i < cole.getCapacidad(); i++) {
-            comprado=false;
-           for(Integer p:pasajesComprados){
-               if(i+1 == p){
-                   comprado=true;
-                   break;
-               }
-           }
-           if(!comprado){
-               asientos.add(i + 1);
-           }
+            comprado = false;
+            for (Integer p : pasajesComprados) {
+                if (i + 1 == p) {
+                    comprado = true;
+                    break;
+                }
+            }
+            if (!comprado) {
+                asientos.add(i + 1);
+            }
         }
         comboModelo = new DefaultComboBoxModel(asientos.toArray());
         jComboAsiento.setModel(comboModelo);
@@ -163,11 +163,6 @@ public class Ventas extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTabla1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jtaRecibo = new javax.swing.JTextArea();
 
@@ -277,38 +272,6 @@ public class Ventas extends javax.swing.JInternalFrame {
         jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel14.setFont(new java.awt.Font("Trebuchet MS", 2, 14)); // NOI18N
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Si lo desea, seleccione un pasaje de la tabla y anulelo. O emita la factura de Venta");
-        jLabel14.setToolTipText("");
-        jLabel14.setAlignmentY(0.0F);
-        jLabel14.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), null));
-        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        jTabla1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTabla1);
-
-        jButton3.setBackground(new java.awt.Color(255, 0, 51));
-        jButton3.setText("Anular Venta de Pasaje Emitido");
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        jButton4.setBackground(new java.awt.Color(0, 204, 0));
-        jButton4.setText("Emitir Factura de Pasaje");
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
         jtaRecibo.setColumns(20);
         jtaRecibo.setRows(5);
         jtaRecibo.setText("(Aca podria cargar los datos del pasaje emitido)");
@@ -321,57 +284,50 @@ public class Ventas extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(110, 110, 110)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                 .addGap(29, 29, 29)
-                .addComponent(jDni)
+                .addComponent(jDni, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                 .addGap(170, 170, 170))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jComboRuta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jdFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jtPrecio, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jComboColectivo, javax.swing.GroupLayout.Alignment.LEADING, 0, 530, Short.MAX_VALUE)
-                        .addComponent(jComboHora, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboAsiento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18))
-            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jScrollPane2)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(171, 171, 171)
+                .addComponent(jButton1)
+                .addGap(72, 72, 72))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(171, 171, 171)
-                        .addComponent(jButton1)
-                        .addGap(72, 72, 72))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(300, 300, 300))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(150, 150, 150))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jComboRuta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jdFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jtPrecio, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jComboColectivo, javax.swing.GroupLayout.Alignment.LEADING, 0, 530, Short.MAX_VALUE)
+                                .addComponent(jComboHora, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboAsiento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -422,16 +378,8 @@ public class Ventas extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jGuardar)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel14)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(44, 44, 44)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(276, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(43, 43, 43)
@@ -469,23 +417,40 @@ public class Ventas extends javax.swing.JInternalFrame {
 
     private void jGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarActionPerformed
         // TODO add your handling code here:
-       DefaultTableModel model2 = (DefaultTableModel) jTabla.getModel();
+        try{
+        DefaultTableModel model2 = (DefaultTableModel) jTabla.getModel();
         int id = (int) model2.getValueAt(jTabla.getSelectedRow(), 0);
         Pasajero pasajero = pd.buscarPasajero(id);
         java.util.Date fecha = jdFecha.getDate();
         LocalDate lc = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate ahora = LocalDate.now();
+        if(ahora.isAfter(lc)){
+            JOptionPane.showMessageDialog(null, "fecha incorrecta");
+            jdFecha.setDate(null);
+            return;
+        }
+        
         Ruta ruta = (Ruta) jComboRuta.getSelectedItem();
-//        LocalTime horario = (LocalTime) jComboHora.getSelectedItem();
         String selected = (String) jComboHora.getSelectedItem();
         LocalTime horaViaje = LocalTime.parse(selected);
         Colectivo colectivo = (Colectivo) jComboColectivo.getSelectedItem();
         int asiento = (int) jComboAsiento.getSelectedItem();
         String pre = jtPrecio.getText();
         double precio = (double) Double.parseDouble(pre);
-        Pasaje pasaje=new Pasaje(0, pasajero, colectivo, ruta, lc, horaViaje, asiento, precio);
+        Pasaje pasaje = new Pasaje(0, pasajero, colectivo, ruta, lc, horaViaje, asiento, precio);
 //        JOptionPane.showMessageDialog(null, info);
             pasajeD.guardarPasaje(pasaje);
-            jtaRecibo.setText(pasaje.mensajeRecibo());  
+        jtaRecibo.setText(pasaje.mensajeRecibo());
+        jdFecha.setDate(null);
+        jComboHora.removeAllItems();
+        jComboAsiento.removeAllItems();
+        llenarRutas();
+        LlenarColectivos();
+        jtPrecio.setText("");
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Se esperaban numeros no otros caracteres");
+        }
+        
     }//GEN-LAST:event_jGuardarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -496,8 +461,6 @@ public class Ventas extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboAsiento;
     private javax.swing.JComboBox<String> jComboColectivo;
     private javax.swing.JComboBox<String> jComboHora;
@@ -507,7 +470,6 @@ public class Ventas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -516,10 +478,8 @@ public class Ventas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTabla;
-    private javax.swing.JTable jTabla1;
     private com.toedter.calendar.JDateChooser jdFecha;
     private javax.swing.JTextField jtPrecio;
     private javax.swing.JTextArea jtaRecibo;

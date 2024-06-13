@@ -243,5 +243,38 @@ public class HorarioData {
         JOptionPane.showMessageDialog(null, "Error al activar un horario: " + ex.getMessage());
     }
 }
+    
+     public List<Horario> obtenerHorarioPorRutaYEstado(int idRuta) {
+
+        ArrayList<Horario> hora = new ArrayList<>();
+
+        String sql = "SELECT * FROM horarios WHERE idRuta  = ? AND estado = 1";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, idRuta);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Horario horarios = new Horario();
+
+                horarios.setIdHorario(rs.getInt("idHorario"));
+                Ruta ruta = rd.buscarRuta(rs.getInt("idRuta"));
+                horarios.setRuta(ruta);               
+                horarios.setHoraLlegada(rs.getTime("horaLlegada").toLocalTime());
+                horarios.setHoraSalida(rs.getTime("horaSalida").toLocalTime());
+                horarios.setEstado(rs.getBoolean("estado"));
+                hora.add(horarios);
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar horario por ruta " + ex);
+        }
+        return hora;
+    }
 
 }

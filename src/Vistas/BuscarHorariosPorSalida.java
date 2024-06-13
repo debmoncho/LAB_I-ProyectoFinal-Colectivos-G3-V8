@@ -1,13 +1,22 @@
 
 package Vistas;
 
+import Entidades.Horario;
+import accesoADatos.HorarioData;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author tebby
  */
 public class BuscarHorariosPorSalida extends javax.swing.JInternalFrame {
-
-    
+    private DefaultTableModel tablaDec; 
+    private DefaultComboBoxModel jcombo ;
+     HorarioData horarioD=new HorarioData();
  
     /**
      * Creates new form BuscarHorariosPorSalida
@@ -17,6 +26,23 @@ public class BuscarHorariosPorSalida extends javax.swing.JInternalFrame {
       
     }
 
+    private void armarCabecera() {
+        ArrayList<Object> filaCabecera = new ArrayList<>();
+        filaCabecera.add("ruta");
+        filaCabecera.add("Salida");
+        filaCabecera.add("Llegada");
+        filaCabecera.add("estado ");
+        //filaCabecera.add("estado");
+        for (Object it : filaCabecera) {
+            tablaDec.addColumn(it);
+        }
+        jTable.setModel(tablaDec);
+    }
+    
+    private void buscarHorario(){
+        
+        
+    }
  
     
     
