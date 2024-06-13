@@ -23,6 +23,11 @@ public class BuscarHorariosPorSalida extends javax.swing.JInternalFrame {
      */
     public BuscarHorariosPorSalida() {
         initComponents();
+        tablaDec=new DefaultTableModel();
+        jcombo=new DefaultComboBoxModel();
+        
+        
+        
       
     }
 
@@ -39,11 +44,15 @@ public class BuscarHorariosPorSalida extends javax.swing.JInternalFrame {
         jTable.setModel(tablaDec);
     }
     
-    private void buscarHorario(){
-        
-        
+    private void agregarHorarios(){
+        LocalTime horaSalida = LocalTime.parse(jHora.getSelectedItem().toString());
+        List<Horario> lista = horarioD.obtenerHorarioPorHoraSalida(horaSalida);
+        tablaDec.setRowCount(0);
+        for (Horario r : lista) {
+            tablaDec.addRow(new Object[]{r.getHoraSalida(), r.getHoraLlegada(), r.isEstado()});
+            jTable.setModel(tablaDec);
+        }
     }
- 
     
     
     /**
@@ -66,6 +75,12 @@ public class BuscarHorariosPorSalida extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+
+        jHora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jHoraActionPerformed(evt);
+            }
+        });
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,8 +146,8 @@ public class BuscarHorariosPorSalida extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -142,6 +157,11 @@ public class BuscarHorariosPorSalida extends javax.swing.JInternalFrame {
 
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHoraActionPerformed
+        // TODO add your handling code here:
+        agregarHorarios();
+    }//GEN-LAST:event_jHoraActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
